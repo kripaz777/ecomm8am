@@ -24,10 +24,28 @@ class SubCategory(models.Model):
 	def __str__(self):
 		return self.name 
 
+class Slider(models.Model):
+	title = models.CharField(max_length = 500)
+	image = models.ImageField(upload_to = 'media')
+	url = models.URLField(blank = True)
+	rank = models.IntegerField(default = 1)
+	def __str__(self):
+		return self.title
+
+class Ad(models.Model):
+	title = models.CharField(max_length = 500)
+	image = models.ImageField(upload_to = 'media')
+	url = models.URLField(blank = True)
+	rank = models.IntegerField(default = 1)
+	def __str__(self):
+		return self.title
 
 class Item(models.Model):
 	name = models.TextField()
 	slug = models.CharField(max_length = 500, unique = True)
+	category = models.ForeignKey(Category, on_delete=models.CASCADE,default = 1)
+	subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default = 1)
+
 	price = models.IntegerField()
 	discounted_price = models.IntegerField(default = 0)
 	image = models.ImageField(upload_to = 'media',null = True)
@@ -37,4 +55,13 @@ class Item(models.Model):
 	stock = models.CharField(choices = STOCK,max_length = 100,blank = True)
 
 	def __str__(self):
-		return self.name 
+		return self.name
+
+class ContactInfo(models.Model):
+	name = models.CharField(max_length = 500)
+	logo = models.ImageField(upload_to = 'media')
+	address = models.TextField()
+	phone = models.TextField()
+
+	def __str__(self):
+		return self.name
