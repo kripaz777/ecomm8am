@@ -45,7 +45,7 @@ class Item(models.Model):
 	slug = models.CharField(max_length = 500, unique = True)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE,default = 1)
 	subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default = 1)
-
+	
 	price = models.IntegerField()
 	discounted_price = models.IntegerField(default = 0)
 	image = models.ImageField(upload_to = 'media',null = True)
