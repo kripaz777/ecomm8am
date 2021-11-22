@@ -9,6 +9,7 @@ class Category(models.Model):
 	name = models.CharField(max_length = 400)
 	slug = models.CharField(max_length = 500, unique = True)
 	description = models.TextField(blank = True)
+	status = models.CharField(choices = STATUS,max_length = 100,blank = True)
 	image = models.ImageField(upload_to = 'media',null = True)
 
 	def __str__(self):
@@ -27,6 +28,7 @@ class SubCategory(models.Model):
 class Slider(models.Model):
 	title = models.CharField(max_length = 500)
 	image = models.ImageField(upload_to = 'media')
+	status = models.CharField(choices = STATUS,max_length = 100,blank = True)
 	url = models.URLField(blank = True)
 	rank = models.IntegerField(default = 1)
 	def __str__(self):
