@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.shortcuts import reverse
 # Create your models here.
 
 LABELS = (('new','new'),('sale','sale'),('hot','hot'),('','default'))
