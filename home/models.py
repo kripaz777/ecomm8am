@@ -24,6 +24,8 @@ class SubCategory(models.Model):
 
 	def __str__(self):
 		return self.name 
+	def get_subcat_url(self):
+		return reverse('home:subcategory',kwargs={'slug':self.slug})
 
 class Slider(models.Model):
 	title = models.CharField(max_length = 500)
@@ -33,6 +35,8 @@ class Slider(models.Model):
 	rank = models.IntegerField(default = 1)
 	def __str__(self):
 		return self.title
+
+
 
 class Ad(models.Model):
 	title = models.CharField(max_length = 500)
@@ -58,6 +62,9 @@ class Item(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_item_url(self):
+		return reverse('home:detail',kwargs={'slug':self.slug})
 
 class ContactInfo(models.Model):
 	name = models.CharField(max_length = 500)
