@@ -16,7 +16,8 @@ class HomeView(BaseView):
 		self.views['items'] = Item.objects.filter(stock = 'In Stock')
 		self.views['ads'] = Ad.objects.all()
 		self.views['sliders'] = Slider.objects.all()
-
+		self.views['category'] = Category.objects.all()
+		self.views['subcategory'] = SubCategory.objects.all()
 		return render(request,'index.html',self.views)
 
 class SubCategoryView(BaseView):

@@ -44,6 +44,7 @@
 					<div class="tab-pane {{cat.status}} text-style" id="{{cat.id}}">
 						<div class=" con-w3l">
 							{% for item in items %}
+							{% if item.category_id == cat.id %}
 							<div class="col-md-3 m-wthree">
 								<div class="col-m">								
 									<a href="#" data-toggle="modal" data-target="#myModal1" class="offer-img">
@@ -78,6 +79,7 @@
 									</div>
 								</div>
 							</div>
+							{% endif %}
 							{% endfor %}
 							<div class="clearfix"></div>
 						 </div>
@@ -202,15 +204,15 @@
 							<div class="col-md-3 pro-1">
 								<div class="col-m">
 								<a href="#" data-toggle="modal" data-target="#myModal17" class="offer-img">
-										<img src="images/of16.png" class="img-responsive" alt="">
+										<img src="{{item.image.url}}" class="img-responsive" alt="">
 									</a>
 									<div class="mid-1">
 										<div class="women">
-											<h6><a href="single.html">{{item.name}}</a></h6>							
+											<h6><a href="{{item.get_item_url}}">{{item.name}}</a></h6>							
 										</div>
-										{% if items.discounted_price > 0 %}
+										{% if item.discounted_price > 0 %}
 										<div class="mid-2">
-											<p ><label>{{items.price}}</label><em class="item_price">${{items.discounted_price}}</em></p>
+											<p ><label>{{item.price}}</label><em class="item_price">${{item.discounted_price}}</em></p>
 											  <div class="block">
 												<div class="starbox small ghosting"> </div>
 											</div>
@@ -218,7 +220,7 @@
 										</div>
 										{% else %}
 										<div class="mid-2">
-											<p ><em class="item_price">${{items.price}}</em></p>
+											<p ><em class="item_price">${{item.price}}</em></p>
 											  <div class="block">
 												<div class="starbox small ghosting"> </div>
 											</div>
