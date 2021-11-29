@@ -26,29 +26,25 @@
 						{% csrf_token %}
 						<div class="key">
 							<i class="fa fa-user" aria-hidden="true"></i>
-							<input  type="text" name="username" required="">
-							<div class="clearfix"></div>
+							{{form.username}}
+<!-- 					<input  type="text" name="username" required="">
+
+ -->							<div class="clearfix"></div>
 						</div>
-						<div class="key">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-							<input  type="text"  name="email"  required="">
-							<div class="clearfix"></div>
-						</div>
+						
 						<div class="key">
 							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input  type="password" name="password"  required="">
-							<div class="clearfix"></div>
+							{{form.password}}
+<!-- 							<input  type="password" name="password"  required="">
+ -->							<div class="clearfix"></div>
 						</div>
-						<div class="key">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-							<input  type="password" name="cpassword"  required="">
-							<div class="clearfix"></div>
-						</div>
+						
 						<input type="submit" value="Submit">
 					</form>
 				</div>
 				
 			</div>
 		</div>
+	}
 
 {% endblock %}
