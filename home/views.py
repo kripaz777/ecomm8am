@@ -73,3 +73,13 @@ def signup(request):
 			return redirect('home:signup')
 	return render(request,'register.html')
 
+
+class Search(BaseView):
+	def get(self,request):
+		if request.method == 'GET':
+
+			query = request.GET['query']
+			if query is None:
+				return redirect('/')
+			self.views['search_product'] = Item.objects.filter(name__icontains = query)
+		return render(request,'search.html',self.views)
