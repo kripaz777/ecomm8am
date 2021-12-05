@@ -66,6 +66,10 @@ class Item(models.Model):
 	def get_item_url(self):
 		return reverse('home:detail',kwargs={'slug':self.slug})
 
+	def get_cart_url(self):
+		return reverse('cart:add-to-cart',kwargs={'slug':self.slug})
+
+		
 class ContactInfo(models.Model):
 	name = models.CharField(max_length = 500)
 	logo = models.ImageField(upload_to = 'media')
