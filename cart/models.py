@@ -12,3 +12,8 @@ class Cart(models.Model):
 	def __str__(self):
 		return self.user.username
 
+	def get_remove_cart_url(self):
+		return reverse('cart:remove-cart',kwargs={'slug':self.slug})
+	def get_delete_cart_url(self):
+		return reverse('cart:delete-cart',kwargs={'slug':self.slug})
+
