@@ -90,8 +90,22 @@ from django.urls import path, include
 from .models import Item
 from rest_framework import routers, serializers, viewsets
 from .serializers import *
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+from rest_framework import generics
+
 
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+
+class ItemList(generics.ListAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter]
+    filterset_fields = ['category', 'subcategory','status','stock','labels']
+    search_fields = ['name','description']
+    ordering_fields = ['id','name','price','discounted_price']
+

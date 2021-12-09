@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'cart',
     'content',
     'rest_framework',
+    'django_filters',
+
 ]
 
 MIDDLEWARE = [
