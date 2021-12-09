@@ -1,6 +1,8 @@
 from django.db import models
 from home.models import Item
 from django.conf import settings
+from django.urls import reverse
+
 # Create your models here.
 class Cart(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.CASCADE)
@@ -8,6 +10,7 @@ class Cart(models.Model):
 	quantity = models.IntegerField(default = 1)
 	slug = models.CharField(max_length = 300)
 	checkout = models.BooleanField(default = False)
+	sub_total = models.IntegerField(default =0)
 
 	def __str__(self):
 		return self.user.username

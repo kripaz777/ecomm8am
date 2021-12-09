@@ -83,3 +83,15 @@ class Search(BaseView):
 				return redirect('/')
 			self.views['search_product'] = Item.objects.filter(name__icontains = query)
 		return render(request,'search.html',self.views)
+
+
+		# -----------------------API----------------------
+from django.urls import path, include
+from .models import Item
+from rest_framework import routers, serializers, viewsets
+from .serializers import *
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
