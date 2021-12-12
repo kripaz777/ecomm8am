@@ -93,7 +93,9 @@ from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework import generics
-
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -109,3 +111,29 @@ class ItemList(generics.ListAPIView):
     search_fields = ['name','description']
     ordering_fields = ['id','name','price','discounted_price']
 
+
+
+class ItemCRUDView(APIView):
+	def get_object(self,pk):
+		try:
+			return Item.objects.get(pk = pk)
+		except:
+			pass
+
+	def get(self,request,pk,format = None):
+		item = self.get_object(pk)
+		serializer = ItemSerializer(item)
+		return Response(serializer.data)
+
+	def put(self,request,pk,format = None):
+		item = self.get_object(pk)
+		serializers = ItemSerializer(item,data = request.data)
+		if serializers.is_valid():
+			serializers.save()
+			return Response(serializers.data)
+		return Response("There is an Error", status = status.HTTP_400_BAD_REQUEST)
+
+	def delete(self,request,pk,format = None):
+		item = self.get_object(pk)
+		item.delete()
+		return Response("Data is removed or deleted!",status = status.HTTP_200_OK)

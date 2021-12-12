@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers, viewsets
-from .views import ItemViewSet,ItemList
+from .views import ItemViewSet,ItemList,ItemCRUDView
 router = routers.DefaultRouter()
 router.register(r'item', ItemViewSet)
 
@@ -9,5 +9,6 @@ router.register(r'item', ItemViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('items', ItemList.as_view(), name='items'),
+    path('items-crud/<int:pk>', ItemCRUDView.as_view(), name='items-crud'),
 
 ]
